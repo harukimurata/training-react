@@ -26,7 +26,12 @@ const MatchTableModeSelect = () => {
               </div>
               <div className="columns">
                 <div className="column is-half is-offset-one-quarter">
-                  <button className="button is-fullwidth">参加する</button>
+                  <button
+                    className="button is-fullwidth"
+                    onClick={() => toLink("/MatchTable/login")}
+                  >
+                    参加する
+                  </button>
                 </div>
               </div>
             </div>

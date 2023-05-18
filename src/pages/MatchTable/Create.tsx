@@ -4,6 +4,7 @@ import { type MatchTableCreateForm } from "../../types/MatchTable";
 import { createMatchTable } from "../../logic/apiRequest";
 import CreateConfirm from "../../components/MatchTable/CreateConfirm";
 import CommonModal from "../../components/Modal/CommonModal";
+import ErrorModal from "../../components/Modal/ErrorModal";
 
 const MatchTableCreate = () => {
   const navigate = useNavigate();
@@ -26,6 +27,9 @@ const MatchTableCreate = () => {
   const [isCommonModal, setIsCommonModal] = useState<Boolean>(false);
   const [commonModalTitle, setCommonModalTitle] = useState<string>("");
   const [commonModalText, setCommonModalText] = useState<string>("");
+  //エラーモーダル
+  const [isErrorModal, setIsErrorModal] = useState<Boolean>(false);
+  const [errorModalText, setErrprModalText] = useState<string>("");
 
   //配列の動的更新処理
   const playerInput = (index: number, value: string) => {
@@ -157,6 +161,23 @@ const MatchTableCreate = () => {
   //モーダル非表示
   const commonModalClose = () => {
     setIsCommonModal(false);
+  };
+
+  //エラーモーダル表示
+  const errorModalComponent = () => {
+    if (isErrorModal) {
+      return (
+        <ErrorModal
+          text={errorModalText}
+          onClick={() => errorModalClose()}
+        ></ErrorModal>
+      );
+    }
+  };
+
+  //エラーモーダル非表示
+  const errorModalClose = () => {
+    setIsErrorModal(false);
   };
 
   const toLink = (path: string) => {
@@ -301,6 +322,7 @@ const MatchTableCreate = () => {
       {createMain()}
       {createConfirmComponent()}
       {commonModalComponent()}
+      {errorModalComponent()}
     </>
   );
 };
