@@ -1,0 +1,11 @@
+.is-main-center {
+  margin: auto;
+}
+
+.pc-window {
+  width: 900px;
+}
+
+.main-height {
+  min-height: 100vh;
+}
