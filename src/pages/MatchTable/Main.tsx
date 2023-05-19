@@ -375,7 +375,13 @@ const MatchTableMain = () => {
       return (
         <>
           {resultButton(verti_index, hori_index)}
-          <p className="mt-1">
+          <p
+            className={
+              matchTableData.result[verti_index][hori_index]
+                ? "has-text-danger"
+                : "has-text-info"
+            }
+          >
             {resultConvert(matchTableData.result[verti_index][hori_index])}
           </p>
         </>
@@ -485,7 +491,7 @@ const MatchTableMain = () => {
   };
 
   return (
-    <>
+    <div>
       {matchTableMainComponent()}
       <button
         className="button is-primary is-large mb-3"
@@ -496,7 +502,7 @@ const MatchTableMain = () => {
       {authPasswordModal()}
       {commonModalComponent()}
       {errorModalComponent()}
-    </>
+    </div>
   );
 };
 export default MatchTableMain;
