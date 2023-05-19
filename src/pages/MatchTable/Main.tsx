@@ -199,14 +199,6 @@ const MatchTableMain = () => {
   };
 
   /**
-   * フォントカラー変更
-   * @param value
-   */
-  const textColor = (value: boolean) => {
-    return value ? "has-text-danger" : "has-text-info";
-  };
-
-  /**
    * 対戦表生成
    * @param index
    */
@@ -332,8 +324,8 @@ const MatchTableMain = () => {
           <thead>
             <tr>
               <th>Player</th>
-              {playerData.map((player, index) => (
-                <th className="text-nowrap" key={index}>
+              {playerData.map((player) => (
+                <th className="text-nowrap" key={player}>
                   {player}
                 </th>
               ))}
@@ -344,7 +336,7 @@ const MatchTableMain = () => {
           </thead>
           <tbody>
             {playerData.map((player_verti, verti_index) => (
-              <tr key={verti_index}>
+              <tr key={player_verti}>
                 <th className="text-nowrap">{player_verti}</th>
                 {playerData.map((player_hori, hori_index) => (
                   <td key={player_hori}>
@@ -477,9 +469,9 @@ const MatchTableMain = () => {
                 </thead>
                 <tbody>
                   {matchTableData.order.map((element, index) => (
-                    <tr>
-                      <th key={index}>{element.card}</th>
-                      <td>
+                    <tr key={element.card}>
+                      <th>{element.card}</th>
+                      <td key={element.result}>
                         <button
                           className={`button ${
                             battleState(element.result).color
