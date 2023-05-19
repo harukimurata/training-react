@@ -35,8 +35,6 @@ const MatchTableMain = () => {
   const [isButtonView, setButtonView] = useState<boolean>(false);
 
   useEffect(() => {
-    console.log("useEffect");
-
     const matchTableInfo = localStorage.getItem("matchTableInfo");
     const matchTableLoginInfo = localStorage.getItem("matchTableLoginInfo");
     if (

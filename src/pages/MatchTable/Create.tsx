@@ -78,9 +78,6 @@ const MatchTableCreate = () => {
     } else {
       setIsPasswordEmpty(false);
     }
-
-    console.log(formData);
-
     setIsConfirm(true);
   };
 

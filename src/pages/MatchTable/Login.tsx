@@ -40,7 +40,6 @@ const MatchTableLogin = () => {
 
   //ログイン処理
   const login = async () => {
-    console.log(formData);
     try {
       const result = await getMatchTable(formData);
       if (result) {
