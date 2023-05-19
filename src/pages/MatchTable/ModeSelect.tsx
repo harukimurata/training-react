@@ -1,4 +1,5 @@
 import { useNavigate } from "react-router-dom";
+import HeaderComponent from "../../components/headerComponent";
 
 const MatchTableModeSelect = () => {
   const navigate = useNavigate();
@@ -9,6 +10,7 @@ const MatchTableModeSelect = () => {
 
   return (
     <>
+      <HeaderComponent title="対戦表つくーる"></HeaderComponent>
       <div className="columns is-mobile is-centered mx-2">
         <div className="column is-11 mt-3">
           <div className="card">

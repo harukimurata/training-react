@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import CommonModal from "../../components/Modal/CommonModal";
 import ErrorModal from "../../components/Modal/ErrorModal";
+import HeaderComponent from "../../components/headerComponent";
 import { getMatchTable, updateMatchTable } from "../../logic/apiRequest";
 import {
   type MatchTableGetForm,
@@ -38,7 +39,12 @@ const MatchTableMain = () => {
 
     const matchTableInfo = localStorage.getItem("matchTableInfo");
     const matchTableLoginInfo = localStorage.getItem("matchTableLoginInfo");
-    if (matchTableInfo == null || matchTableLoginInfo == null) {
+    if (
+      matchTableInfo == null ||
+      matchTableLoginInfo == null ||
+      matchTableInfo === "" ||
+      matchTableLoginInfo === ""
+    ) {
       setErrprModalText("大会情報が見つかりませんでした。");
       setIsErrorModal(true);
     } else {
@@ -309,6 +315,13 @@ const MatchTableMain = () => {
     }
   };
 
+  //ログアウト
+  const logout = () => {
+    localStorage.setItem("matchTableInfo", "");
+    localStorage.setItem("matchTableLoginInfo", "");
+    toLink("/MatchTable/login");
+  };
+
   const toLink = (path: string) => {
     navigate(path);
   };
@@ -425,10 +438,7 @@ const MatchTableMain = () => {
           <h1 className="title pt-3">{matchTableData.title}</h1>
           <div className="columns is-mobile mx-2">
             <div className="column has-text-left">
-              <button
-                className="button is-light mr-2"
-                onClick={() => toLink("/MatchTable/login")}
-              >
+              <button className="button is-light mr-2" onClick={() => logout()}>
                 ログアウト
               </button>
             </div>
@@ -473,7 +483,9 @@ const MatchTableMain = () => {
                       <th key={index}>{element.card}</th>
                       <td>
                         <button
-                          className="button"
+                          className={`button ${
+                            battleState(element.result).color
+                          }`}
                           onClick={() => ballteFlow(index)}
                         >
                           {battleState(element.result).state}
@@ -492,6 +504,7 @@ const MatchTableMain = () => {
 
   return (
     <div>
+      <HeaderComponent title="対戦表つくーる"></HeaderComponent>
       {matchTableMainComponent()}
       <button
         className="button is-primary is-large mb-3"

@@ -1,10 +1,11 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { type MatchTableCreateForm } from "../../types/MatchTable";
-import { createMatchTable } from "../../logic/apiRequest";
 import CreateConfirm from "../../components/MatchTable/CreateConfirm";
 import CommonModal from "../../components/Modal/CommonModal";
 import ErrorModal from "../../components/Modal/ErrorModal";
+import HeaderComponent from "../../components/headerComponent";
+import { createMatchTable } from "../../logic/apiRequest";
+import { type MatchTableCreateForm } from "../../types/MatchTable";
 
 const MatchTableCreate = () => {
   const navigate = useNavigate();
@@ -324,6 +325,7 @@ const MatchTableCreate = () => {
 
   return (
     <>
+      <HeaderComponent title="対戦表つくーる"></HeaderComponent>
       {createMain()}
       {createConfirmComponent()}
       {commonModalComponent()}

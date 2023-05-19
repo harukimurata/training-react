@@ -26,6 +26,7 @@ function App() {
     return () => window.removeEventListener("resize", onResize);
   }, []);
 
+  //画面の横幅監視
   const watchIsPc = () => {
     return windowDimensions.width >= 1024;
   };

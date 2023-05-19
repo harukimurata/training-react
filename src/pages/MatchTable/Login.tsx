@@ -1,12 +1,12 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { type MatchTableGetForm } from "../../types/MatchTable";
-import { getMatchTable } from "../../logic/apiRequest";
 import ErrorModal from "../../components/Modal/ErrorModal";
+import HeaderComponent from "../../components/headerComponent";
+import { getMatchTable } from "../../logic/apiRequest";
+import { type MatchTableGetForm } from "../../types/MatchTable";
 
 const MatchTableLogin = () => {
   const navigate = useNavigate();
-
   const [formData, setFormData] = useState<MatchTableGetForm>({
     matchId: "",
     password: "",
@@ -100,6 +100,7 @@ const MatchTableLogin = () => {
 
   return (
     <>
+      <HeaderComponent title="対戦表つくーる"></HeaderComponent>
       <div className="columns is-mobile is-centered mx-2">
         <div className="column is-11 mt-3">
           <div className="card">
