@@ -81,7 +81,6 @@ const MatchTableCreate = () => {
     console.log(formData);
 
     setIsConfirm(true);
-    //create();
   };
 
   //大会記入情報確認
@@ -105,11 +104,16 @@ const MatchTableCreate = () => {
   };
 
   //大会情報作成処理
-  const create = () => {
-    console.log(formData);
-    setIsCommonModal(true);
-    setCommonModalTitle("作成しました");
-    setCommonModalText("参加画面に移動します。");
+  const create = async () => {
+    try {
+      const result = await createMatchTable(formData);
+      setCommonModalTitle(result.message);
+      setCommonModalText("参加画面に移動します。");
+      setIsCommonModal(true);
+    } catch (e: any) {
+      setErrprModalText(e.response.data.message);
+      setIsErrorModal(true);
+    }
   };
 
   //大会名記入漏れエラーメッセージ
@@ -161,6 +165,7 @@ const MatchTableCreate = () => {
   //モーダル非表示
   const commonModalClose = () => {
     setIsCommonModal(false);
+    toLink("/MatchTable/login");
   };
 
   //エラーモーダル表示

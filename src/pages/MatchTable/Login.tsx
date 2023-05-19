@@ -39,10 +39,20 @@ const MatchTableLogin = () => {
   };
 
   //ログイン処理
-  const login = () => {
+  const login = async () => {
     console.log(formData);
-    setIsErrorModal(true);
-    setErrprModalText("失敗");
+    try {
+      const result = await getMatchTable(formData);
+      if (result) {
+        localStorage.setItem("matchTableInfo", JSON.stringify(result));
+        localStorage.setItem("matchTableLoginInfo", JSON.stringify(formData));
+        toLink("/MatchTable");
+      }
+    } catch (e: any) {
+      setErrprModalText(e.response.data.message);
+
+      setIsErrorModal(true);
+    }
   };
 
   //大会ID記入漏れエラーメッセージ
