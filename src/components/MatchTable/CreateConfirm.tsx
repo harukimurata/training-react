@@ -1,4 +1,10 @@
-const CreateConfirm = (props: any) => {
+import { type MatchTableCreateRequest } from "../../types/MatchTable";
+
+const CreateConfirm = (props: {
+  inputData: MatchTableCreateRequest;
+  onSubmit: any;
+  onBack: any;
+}) => {
   const passwordCover = (value: string | undefined | null) => {
     if (!value) {
       return "設定なし";
@@ -20,7 +26,7 @@ const CreateConfirm = (props: any) => {
 
       <div className="field">
         <label className="label has-text-left">大会ID</label>
-        <p className="has-text-left">{props.inputData.matchId}</p>
+        <p className="has-text-left">{props.inputData.match_id}</p>
       </div>
 
       <div className="field">
@@ -35,13 +41,13 @@ const CreateConfirm = (props: any) => {
           編集権限パスワード<span className="tag is-info"> 任意</span>
         </label>
         <p className="has-text-left">
-          {passwordCover(props.inputData.authPassword)}
+          {passwordCover(props.inputData.auth_password)}
         </p>
       </div>
 
       <label className="label has-text-left">参加プレイヤー</label>
 
-      {props.playerList.map((element: string, index: number) => (
+      {props.inputData.player.map((element: string, index: number) => (
         <div className="field mx-2" key={index}>
           <label className="label has-text-left">プレイヤー {index + 1}</label>
           <p className="has-text-left">{element}</p>

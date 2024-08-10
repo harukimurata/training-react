@@ -3,12 +3,12 @@ import { useNavigate } from "react-router-dom";
 import ErrorModal from "../../components/Modal/ErrorModal";
 import HeaderComponent from "../../components/headerComponent";
 import { getMatchTable } from "../../logic/apiRequest";
-import { type MatchTableGetForm } from "../../types/MatchTable";
+import { type MathTableGetRequest } from "../../types/MatchTable";
 
 const MatchTableLogin = () => {
   const navigate = useNavigate();
-  const [formData, setFormData] = useState<MatchTableGetForm>({
-    matchId: "",
+  const [formData, setFormData] = useState<MathTableGetRequest>({
+    match_id: "",
     password: "",
   });
 
@@ -17,18 +17,18 @@ const MatchTableLogin = () => {
   const [isPasswordEmpty, setIsPasswordEmpty] = useState<Boolean>(false);
   //モーダル
   const [isErrorModal, setIsErrorModal] = useState<Boolean>(false);
-  const [errorModalText, setErrprModalText] = useState<string>("");
+  const [errorModalText, setErrorModalText] = useState<string>("");
 
   //入力データの確認
   const formDataConfirm = () => {
-    if (formData.matchId === "" || formData.matchId == null) {
+    if (formData.match_id == "" || formData.match_id == null) {
       setIsMatchIdEmpty(true);
       return;
     } else {
       setIsMatchIdEmpty(false);
     }
 
-    if (formData.password === "" || formData.password == null) {
+    if (formData.password == "" || formData.password == null) {
       setIsPasswordEmpty(true);
       return;
     } else {
@@ -43,13 +43,12 @@ const MatchTableLogin = () => {
     try {
       const result = await getMatchTable(formData);
       if (result) {
-        localStorage.setItem("matchTableInfo", JSON.stringify(result));
-        localStorage.setItem("matchTableLoginInfo", JSON.stringify(formData));
+        localStorage.setItem("matchTableData", JSON.stringify(result));
+        localStorage.setItem("loginInfo", JSON.stringify(formData));
         toLink("/MatchTable");
       }
     } catch (e: any) {
-      setErrprModalText(e.response.data.message);
-
+      setErrorModalText(e.response.data.message);
       setIsErrorModal(true);
     }
   };
@@ -113,9 +112,9 @@ const MatchTableLogin = () => {
                   <input
                     className="input"
                     type="text"
-                    value={formData.matchId}
+                    value={formData.match_id}
                     onChange={(e) => {
-                      setFormData({ ...formData, matchId: e.target.value });
+                      setFormData({ ...formData, match_id: e.target.value });
                     }}
                   />
                 </div>

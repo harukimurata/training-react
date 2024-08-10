@@ -1,11 +1,12 @@
 import axios from "axios";
 import {
-  type MatchTableCreateForm,
-  type MatchTableGetForm,
-  type MatchTableResponse,
+  type MatchTableCreateRequest,
+  type MathTableGetRequest,
+  type MatchTableData,
+  type MatchTableUpdateRequest,
 } from "../types/MatchTable";
-import { type MatchTableInfoUpdateForm } from "../types/MatchTableInfo";
 const API_URL = "http://localhost:3000";
+const MATCH_TABLE_API_URL = API_URL + "/matchTable";
 
 /**
  * 大会情報取得
@@ -13,9 +14,9 @@ const API_URL = "http://localhost:3000";
  * @returns
  */
 export async function getMatchTable(
-  data: MatchTableGetForm
-): Promise<MatchTableResponse> {
-  const result = await axios.post(`${API_URL}/matchTable`, data);
+  data: MathTableGetRequest
+): Promise<MatchTableData> {
+  const result = await axios.post(`${MATCH_TABLE_API_URL}/get`, data);
   return result.data;
 }
 
@@ -25,9 +26,9 @@ export async function getMatchTable(
  * @returns
  */
 export async function createMatchTable(
-  data: MatchTableCreateForm
+  data: MatchTableCreateRequest
 ): Promise<any> {
-  const result = await axios.post(`${API_URL}/matchTableData`, data);
+  const result = await axios.post(`${MATCH_TABLE_API_URL}/create`, data);
   return result.data;
 }
 
@@ -37,8 +38,8 @@ export async function createMatchTable(
  * @returns
  */
 export async function updateMatchTable(
-  data: MatchTableInfoUpdateForm
+  data: MatchTableUpdateRequest
 ): Promise<any> {
-  const result = await axios.patch(`${API_URL}/matchTableData`, data);
+  const result = await axios.post(`${MATCH_TABLE_API_URL}/update`, data);
   return result.data;
 }

@@ -5,17 +5,17 @@ import CommonModal from "../../components/Modal/CommonModal";
 import ErrorModal from "../../components/Modal/ErrorModal";
 import HeaderComponent from "../../components/headerComponent";
 import { createMatchTable } from "../../logic/apiRequest";
-import { type MatchTableCreateForm } from "../../types/MatchTable";
+import { type MatchTableCreateRequest } from "../../types/MatchTable";
 
 const MatchTableCreate = () => {
   const navigate = useNavigate();
 
-  const [formData, setFormData] = useState<MatchTableCreateForm>({
+  const [formData, setFormData] = useState<MatchTableCreateRequest>({
     title: "",
-    matchId: "",
+    match_id: "",
     password: "",
-    player: ["palyerA", "palyerB"],
-    authPassword: null,
+    player: ["player_A", "player_B"],
+    auth_password: null,
   });
 
   //入力確認切り替えフラグ
@@ -58,21 +58,21 @@ const MatchTableCreate = () => {
 
   //入力データの確認
   const formDataConfirm = () => {
-    if (formData.title === "" || formData.title == null) {
+    if (formData.title == "" || formData.title == null) {
       setIsTitleEmpty(true);
       return;
     } else {
       setIsTitleEmpty(false);
     }
 
-    if (formData.matchId === "" || formData.matchId == null) {
+    if (formData.match_id == "" || formData.match_id == null) {
       setIsMatchIdEmpty(true);
       return;
     } else {
       setIsMatchIdEmpty(false);
     }
 
-    if (formData.password === "" || formData.password == null) {
+    if (formData.password == "" || formData.password == null) {
       setIsPasswordEmpty(true);
       return;
     } else {
@@ -87,8 +87,6 @@ const MatchTableCreate = () => {
       return (
         <CreateConfirm
           inputData={formData}
-          playerList={formData.player}
-          text={commonModalText}
           onSubmit={() => create()}
           onBack={() => createConfirmClose()}
         ></CreateConfirm>
@@ -217,9 +215,9 @@ const MatchTableCreate = () => {
                     <input
                       className="input"
                       type="text"
-                      value={formData.matchId}
+                      value={formData.match_id}
                       onChange={(e) => {
-                        setFormData({ ...formData, matchId: e.target.value });
+                        setFormData({ ...formData, match_id: e.target.value });
                       }}
                     />
                   </div>
@@ -252,11 +250,11 @@ const MatchTableCreate = () => {
                     <input
                       className="input"
                       type="password"
-                      value={formData.authPassword ?? ""}
+                      value={formData.auth_password ?? ""}
                       onChange={(e) => {
                         setFormData({
                           ...formData,
-                          authPassword: e.target.value,
+                          auth_password: e.target.value,
                         });
                       }}
                     />
