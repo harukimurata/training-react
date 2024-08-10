@@ -1,27 +1,29 @@
-import { Navigate } from "react-router-dom";
-
-import Login from "../pages/Login";
-import Home from "../pages/Home";
-import PlayerStatus from "../components/PlayerStatus";
+import Main from "../pages/Main";
+import MatchTableModeSelect from "../pages/MatchTable/ModeSelect";
+import MatchTableCreate from "../pages/MatchTable/Create";
+import MatchTableLogin from "../pages/MatchTable/Login";
+import MatchTableMain from "../pages/MatchTable/Main";
 
 const routes = [
   {
-    path: "/login",
-    element: <Login />,
+    path: "/",
+    element: <Main />,
   },
   {
-    path: "/",
-    element: <Home />,
-    children: [
-      {
-        path: "player-status",
-        element: <PlayerStatus />,
-      },
-    ],
+    path: "/MatchTable/mode",
+    element: <MatchTableModeSelect />,
   },
   {
-    path: "/",
-    element: <Navigate to="/" />,
+    path: "/MatchTable/create",
+    element: <MatchTableCreate />,
+  },
+  {
+    path: "/MatchTable/login",
+    element: <MatchTableLogin />,
+  },
+  {
+    path: "/MatchTable",
+    element: <MatchTableMain />,
   },
 ];
 export default routes;

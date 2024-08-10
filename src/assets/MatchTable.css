@@ -1,0 +1,12 @@
+.table-width {
+  max-width: 840px;
+  overflow: scroll;
+}
+
+.table-cell-width-mediun {
+  width: 50px;
+}
+
+.text-nowrap {
+  white-space: nowrap;
+}
